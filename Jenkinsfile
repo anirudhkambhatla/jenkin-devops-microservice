@@ -1,11 +1,12 @@
 pipeline {
 	// agent any
-	agent { docker { image 'maven:sapmachine'} }
+	// agent { docker { image 'maven:sapmachine'} }
+	agent { docker { image 'node:13.8'} }
 	stages {
 		stage('Build') {
 			steps {
 			  echo "Build Phase"
-			  sh 'mvn --version'
+			  sh 'node --version'
 			}
 		}
 		stage('Test') {
