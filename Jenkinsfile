@@ -17,4 +17,16 @@ pipeline {
 			}
 		}
 	}
+
+	post {
+		always {
+			echo "This will run for every run"
+		}
+		success {
+			echo "You succeeded"
+		}
+		failure {
+			echo "Please try again"
+		}
+	}
 }
