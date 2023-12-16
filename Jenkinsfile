@@ -1,12 +1,18 @@
 pipeline {
 	agent any
-	// agent { docker { image 'maven:sapmachine'} }
+	// agent { docker { image 'maven:3.9.6'} }
 	// agent { docker { image 'node:13.8'} }
+	environment {
+		dockerHome = tool 'myDocker'
+		mavenHome = tool 'myMaven'
+		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+	}
 	stages {
 		stage('Build') {
 			steps {
 			  echo "Build Phase"
-			  //sh 'node --version'
+			  sh 'mvn --version'
+			  sh 'docker version'
 			  echo "Build"
 			  echo "PATH - $PATH"
 			  echo "BUILD_NUMBER - $env.BUILD_NUMBER"
